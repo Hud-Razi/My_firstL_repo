@@ -157,7 +157,36 @@ void upd_name(){
      fclose(cust_db);
     
 }
-void upd_id(){}
+void upd_id(){
+    char u_name[30];
+    int id_cmp;
+    int n_id;
+    printf("enter the name to find: ");
+    scanf(" %[^\n]",u_name);
+    for (int i = 0;i < size; i++){
+        if (strcmp(cust[i].name,u_name)==0){
+            printf("%-10d %-10s %-10s %-10s\n",cust[i].id,cust[i].name,cust[i].adrs,cust[i].phone);
+            printf("Enter the id to change : ");
+            scanf("%d",&id_cmp);            
+        }
+        else {
+            printf("Name not found .");
+        }
+    }
+    for (int i = 0;i < size;i++){
+            if (id_cmp == cust[i].id){
+                printf("Enter the new id : ");
+                scanf("%d",&n_id);
+
+                cust[i].id = n_id;
+            }
+    }
+    cust_db = fopen("customer_database.txt","w");
+     for (int i = 0;i < size;i++){
+         fprintf(cust_db,"%-10d %-10s %-10s %-10s\n",cust[i].id,cust[i].name,cust[i].adrs,cust[i].phone);
+     }
+     fclose(cust_db);
+}
 void upd_adrs(){}
 void upd_phone(){}
 void update_cust(){
